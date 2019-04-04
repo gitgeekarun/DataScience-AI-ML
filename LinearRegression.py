@@ -29,3 +29,8 @@ lm.fit(X,Y)
 #print the intercept and coefficents
 print('Intercept:',lm.intercept_)
 print('Coefficient:',lm.coef_)
+
+# y = mx + c (m=0.04753664*spend_dollar + 7.03259355)
+spend_dollar = 50000
+prediction = 0.04753664 * spend_dollar + 7.03259355
+print('So for every $50,000 spend on TV adv increases the sales of:',prediction,'widgets.')
