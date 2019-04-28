@@ -23,8 +23,9 @@ import xgboost as xgb
 xgb.__version__
 
 #Import the train and test datasets
-df_train = pd.read_csv('train.csv')
-df_test = pd.read_csv('test.csv')
+#Refer to the Datasets repository for actual files
+df_train = pd.read_csv('mercedes_train.csv')
+df_test = pd.read_csv('mercedes_test.csv')
 
 #Do some basic EDA to check the dataset
 print(df_train.info())
