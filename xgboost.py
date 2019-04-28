@@ -100,6 +100,32 @@ print(df_labels.shape) #(4209,)
 #splitting the train and labels (80/20 ratio)
 xtrain,xtest,ytrain,ytest = train_test_split(df_train_final,df_labels,test_size=0.2,random_state=42)
 
-#Now its time to reduce the dimensions of the datasets using PCA
-#CONTINUE FROM HERE
+#Dimensionality Reduction using PCA
+dim_red = PCA(n_components=0.95) #reduce the dimensions where 95% of the variance is intact
+dim_red.fit(df_train_final) #fit the pca model on the training data
+dim_red.n_components_ #6 pca components
+
+#We have 6 features capturing 95% variance in the data
+print('Variance:', sum(dim_red.explained_variance_ratio_)) #Variance: 0.956079358106743
+
+#apply the pca model by transforming the datasets for train,validation and test datasets
+pca_xtrain = pd.DataFrame(dim_red.transform(xtrain))
+pca_xtest = pd.DataFrame(dim_red.transform(xtest))
+pca_df_test = pd.DataFrame(dim_red.transform(df_test_final))
+
+#Check the shape of the datasets
+print('Training Data(pca_xtrain):',pca_xtrain.shape) #(3367, 6)
+print('Validation Data(pca_xtest):', pca_xtest.shape) #(842, 6)
+print('Testing Data(pca_df_test):', pca_df_test.shape) #(4209, 6)
+print('Training_pred Label(ytrain):', ytrain.shape) #(3367,)
+print('Validation_pred Label(ytest):', ytest.shape) #(842,)
+
+#Applying XGBoost
+#Create an XGBoost object
+XGB_model = XGBClassifier() 
+#Fit the XGBoost model on the training set
+XGB_model.fit(pca_xtrain,ytrain)
+
+#prediction on test data
+ypred = XGB_model.predict(pca_xtest)
 
