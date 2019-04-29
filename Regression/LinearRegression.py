@@ -36,4 +36,4 @@ print('Coefficient:',lm.coef_)
 #x(spend_dollar) = Unknown Input variable
 spend_dollar = 50000
 prediction = 0.04753664 * spend_dollar + 7.03259355
-print('So for every $50,000 spend on TV adv increases the sales of:',prediction,'widgets.')
+print('For every $50,000 spend on TV adv increases the sales of:',prediction,'widgets.')
