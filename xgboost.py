@@ -125,7 +125,18 @@ print('Validation_pred Label(ytest):', ytest.shape) #(842,)
 XGB_model = XGBClassifier() 
 #Fit the XGBoost model on the training set
 XGB_model.fit(pca_xtrain,ytrain)
+#For parameters to work with, refer the link below, thanks to AV
+#https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/
 
-#prediction on test data
+#prediction on validation set
 ypred = XGB_model.predict(pca_xtest)
+
+#Prediction on test data
+XGB_model.predict(pca_df_test)
+
+#Metrics
+#check the accuracy of (prediction Vs test labels)
+print(mean_squared_error(ytest,ypred))
+#R-Squared error
+print(r2_score(ytest,ypred))
 
