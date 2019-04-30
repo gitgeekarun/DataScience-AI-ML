@@ -8,7 +8,7 @@ from math import sqrt
 %matplotlib inline
 
 #read the advertising data to dataframe
-adv_df = pd.read_csv('Advertising.csv',index_col=0)
+adv_df = pd.read_csv('/Datasets/Advertising.csv',index_col=0)
 
 #visualize the relationship between features and sales using scatter plot
 fig,axes = plt.subplots(1,3,sharey=True)
